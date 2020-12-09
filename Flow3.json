@@ -1,0 +1,92 @@
+[
+    {
+        "id": "fbcf325b.90d95",
+        "type": "tab",
+        "label": "流程3",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "4de23ccf.74a8b4",
+        "type": "inject",
+        "z": "fbcf325b.90d95",
+        "name": "",
+        "topic": "timestamp",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 160,
+        "y": 160,
+        "wires": [
+            [
+                "898c6a5d.22c788"
+            ]
+        ]
+    },
+    {
+        "id": "898c6a5d.22c788",
+        "type": "function",
+        "z": "fbcf325b.90d95",
+        "name": "",
+        "func": "msg.headers={\n    deviceKey: \"v6RaPkokehYVd3vE\"\n    };\nmsg.payload=\"Temperature,,24.3\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 280,
+        "wires": [
+            [
+                "6574eb7a.70f754"
+            ]
+        ]
+    },
+    {
+        "id": "6574eb7a.70f754",
+        "type": "http request",
+        "z": "fbcf325b.90d95",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://api.mediatek.com/mcs/v2/devices/DtfY0x1V/datapoints.csv",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 600,
+        "y": 280,
+        "wires": [
+            [
+                "e6c72599.183998",
+                "750d0fbb.efd71"
+            ]
+        ]
+    },
+    {
+        "id": "e6c72599.183998",
+        "type": "http response",
+        "z": "fbcf325b.90d95",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 790,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "750d0fbb.efd71",
+        "type": "debug",
+        "z": "fbcf325b.90d95",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 810,
+        "y": 380,
+        "wires": []
+    }
+]
